@@ -1,5 +1,11 @@
 # Slack LLM Bot
 
+![Python](https://img.shields.io/badge/python-3.11-blue)
+![FastAPI](https://img.shields.io/badge/framework-fastapi-green)
+![Slack](https://img.shields.io/badge/integration-slack-black)
+![Cloud Run](https://img.shields.io/badge/deploy-gcp--cloud--run-blue)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
+
 A minimal, production-ready Slack chatbot powered by Large Language
 Models (LLMs), built with FastAPI and deployable on Google Cloud Run.
 
