@@ -41,18 +41,3 @@ def mention_listener(event, client, logger):
 
     # then process
     handle_message(event, client)
-
-
-# @slack_app.event("message")
-# def message_listener(event, client, logger):
-#     logger.info(f"MESSAGE: {event}")
-
-#     # ignore bot messages
-#     if event.get("bot_id"):
-#         return
-
-#     # ignore system messages (joins, etc.)
-#     if event.get("subtype"):
-#         return
-
-#     handle_message(event, client)

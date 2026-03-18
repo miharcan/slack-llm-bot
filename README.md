@@ -6,38 +6,28 @@
 ![Cloud Run](https://img.shields.io/badge/deploy-gcp--cloud--run-blue)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-A minimal, production-ready Slack chatbot powered by Large Language
-Models (LLMs), built with FastAPI and deployable on Google Cloud Run.
-
-This project is designed as a clean, extensible foundation for building
-AI-powered Slack applications.
+Minimal Slack AI chatbot built with FastAPI and LLMs, deployable on
+Google Cloud Run with automated CI/CD via GitHub Actions.
 
 ------------------------------------------------------------------------
 
 ## Overview
 
-This repository demonstrates how to:
+This project provides a clean, production-ready foundation for building
+Slack chatbots powered by large language models.
 
--   Build a Slack bot using the Events API
--   Process real-time messages with FastAPI
--   Integrate LLMs for intelligent responses
--   Deploy a containerized service to Cloud Run
+It demonstrates:
 
-It intentionally keeps the architecture simple while remaining
-production-ready.
+-   Real-time Slack event handling
+-   LLM-based response generation
+-   Containerized deployment on Cloud Run
+-   Automated deployment using GitHub Actions
 
 ------------------------------------------------------------------------
 
 ## Architecture
 
-    Slack → FastAPI → LLM → Slack response
-
-Components:
-
--   Slack Events API for message ingestion
--   FastAPI as the application server
--   LLM provider (OpenAI by default)
--   Cloud Run for scalable deployment
+Slack -\> FastAPI -\> LLM -\> Slack response
 
 ------------------------------------------------------------------------
 
@@ -53,9 +43,9 @@ Components:
 
 ------------------------------------------------------------------------
 
-## Quickstart
+## Quickstart (Local)
 
-### 1. Clone the repository
+### 1. Clone repository
 
     git clone https://github.com/your-username/slack-llm-bot.git
     cd slack-llm-bot
@@ -70,29 +60,37 @@ Components:
 
     uvicorn app:api --reload --port 3000
 
-### 4. Expose with ngrok
-
-    ngrok http 3000
-
-### 5. Configure Slack
-
-Set the Request URL:
-
-    https://your-ngrok-url/slack/events
-
 ------------------------------------------------------------------------
 
 ## Deployment (Cloud Run)
 
-Build and deploy:
+Build and deploy manually:
 
     gcloud builds submit --tag gcr.io/YOUR_PROJECT/slack-llm-bot
 
     gcloud run deploy slack-llm-bot   --image gcr.io/YOUR_PROJECT/slack-llm-bot   --region europe-west1   --platform managed   --allow-unauthenticated   --set-env-vars SLACK_BOT_TOKEN=xxx,SLACK_SIGNING_SECRET=xxx,OPENAI_API_KEY=xxx
 
-Update Slack Request URL:
+------------------------------------------------------------------------
 
-    https://YOUR-CLOUD-RUN-URL/slack/events
+## CI/CD (GitHub Actions)
+
+This project uses GitHub Actions to automatically deploy to Google Cloud Run on push to main, withg the deployment pipeline:
+
+-   Trigger: push to `main`
+-   Build Docker image
+-   Push to Google Container Registry
+-   Deploy to Cloud Run
+-   Inject environment variables securely via GitHub Secrets
+
+Required GitHub secrets:
+
+    GCP_PROJECT_ID
+    GCP_REGION
+    GCP_SA_KEY
+    SERVICE_NAME
+    SLACK_BOT_TOKEN
+    SLACK_SIGNING_SECRET
+    OPENAI_API_KEY
 
 ------------------------------------------------------------------------
 
@@ -108,34 +106,14 @@ Send a message:
 
 ------------------------------------------------------------------------
 
-## Design Principles
-
--   Minimal surface area
--   Clear separation of concerns
--   Production-ready defaults
--   Easy to extend
-
-------------------------------------------------------------------------
-
-## Known Considerations
+## Notes
 
 -   Slack retries events if responses exceed \~3 seconds
 -   Duplicate event handling should be implemented for production
--   Cloud Run cold starts may introduce latency on first request
-
-------------------------------------------------------------------------
-
-## Extension Ideas
-
-This project is intentionally simple. It can be extended with:
-
--   Conversation memory
--   Retrieval-augmented generation (RAG)
--   Multi-tenant architecture
--   Additional platform integrations (Discord, Teams)
+-   Cloud Run cold starts may introduce latency
 
 ------------------------------------------------------------------------
 
 ## License
 
-MIT# trigger deploy
+MIT
