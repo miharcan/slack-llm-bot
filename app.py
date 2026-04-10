@@ -40,4 +40,11 @@ def mention_listener(event, client, logger):
     )
 
     # then process
-    handle_message(event, client)
+    try:
+        handle_message(event, client)
+    except Exception as e:
+        print("MENTION HANDLER ERROR:", e)
+        client.chat_postMessage(
+            channel=event["channel"],
+            text="I hit an unexpected error. Please try again in a moment.",
+        )
