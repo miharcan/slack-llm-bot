@@ -1,4 +1,6 @@
-# Slack LLM Bot
+> Rename Notice (2026-04-10): this repository was renamed from `slack-llm-bot` to `chat-llm-bot`. Please update scripts and links. Keep old-name redirects/documentation until 2026-05-08.
+
+# Chat LLM Bot
 
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![FastAPI](https://img.shields.io/badge/framework-fastapi-green)
