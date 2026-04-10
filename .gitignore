@@ -2,5 +2,7 @@
 __pycache__/
 *.pyc
 .env
+.env.local
 key.json
 *.key.json
+scripts/deploy.local.sh
