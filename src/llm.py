@@ -3,7 +3,7 @@ from openai import OpenAI
 
 DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4.1-mini")
 DEFAULT_TEMPERATURE = float(os.getenv("OPENAI_TEMPERATURE", "0.3"))
-DEFAULT_MAX_TOKENS = int(os.getenv("OPENAI_MAX_TOKENS", "220"))
+DEFAULT_MAX_TOKENS = int(os.getenv("OPENAI_MAX_TOKENS", "500"))
 
 
 def generate_reply(text: str) -> str:
@@ -12,7 +12,7 @@ def generate_reply(text: str) -> str:
     response = client.chat.completions.create(
         model=DEFAULT_MODEL,
         messages=[
-            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "system", "content": "You are a helpful assistant. Keep responses under 250 words unless the user asks for deep detail. Hard limit: 500 words."},
             {"role": "user", "content": text},
         ],
         temperature=DEFAULT_TEMPERATURE,
