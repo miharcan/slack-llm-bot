@@ -1,4 +1,4 @@
-> **GCP retirement — 11 November 2026:** Cloud deployment is being archived and shut down. Historical cloud URLs and deployment examples below are retained as reference. Do not run them. See [retirement records](docs/gcp-retirement/README.md).
+> **GCP retirement — 11 November 2026:** Cloud deployment is archived and shut down. Historical cloud URLs and deployment examples below are retained as reference. Do not run them. See [retirement records](docs/gcp-retirement/README.md).
 
 > Rename Notice (2026-04-10): this repository was renamed from `slack-llm-bot` to `chat-llm-bot`. Please update scripts and links. Keep old-name redirects/documentation until 2026-05-08.
 
